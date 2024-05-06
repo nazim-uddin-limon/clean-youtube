@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.youtubeContainer > div {
+  height: 450px;
+}
+
+@media only screen and (max-width: 1150px){
+  .youtubeContainer > div {
+    height: 430px
+  }
+}
+@media only screen and (max-width: 1100px){
+  .youtubeContainer > div {
+    height: 400px
+  }
+}
+@media only screen and (max-width: 1000px){
+  .youtubeContainer > div {
+    height: 350px
+  }
+}
+@media only screen and (max-width: 899px){
+  .youtubeContainer > div {
+    height: 550px
+  }
+}
+@media only screen and (max-width: 799px){
+  .youtubeContainer > div {
+    height: 460px
+  }
+}
+@media only screen and (max-width: 799px){
+  .youtubeContainer > div {
+    height: 400px
+  }
+}
+@media only screen and (max-width: 699px){
+  .youtubeContainer > div {
+    height: 370px
+  }
+}
+@media only screen and (max-width: 599px){
+  .youtubeContainer > div {
+    height: 340px
+  }
+}
+@media only screen and (max-width: 499px){
+  .youtubeContainer > div {
+    height: 300px
+  }
+}
+@media only screen and (max-width: 430px){
+  .youtubeContainer > div {
+    height: 220px
+  }
+}
+@media only screen and (max-width: 390px){
+  .youtubeContainer > div {
+    height: 200px
+  }
+}
+
+
