@@ -6,8 +6,7 @@ const Player = () => {
   return (
     <div className="youtubeContainer">
       <YouTube
-        id="video"
-        opts={{ width: "100%", height: "100%" }}
+        opts={{ width: "100%", height: "100%", playerVars: { autoplay: 1 } }}
         videoId={videoId}
       />
     </div>

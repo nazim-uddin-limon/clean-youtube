@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import { Link as RouterLink } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
+import usePlaylist from "../../hooks/usePlaylist";
+import FavoriteEl from "../favorite";
+
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,12 +18,13 @@ const PlaylistCard = ({ playlist }) => {
   const setPlaylist = useStoreActions(
     (actions) => actions.currentPlaylist.setPlaylist
   );
+  const { toggleFavorites } = usePlaylist();
   const handleSetPlaylist = (id) => {
     const playlist = playlists[id];
     setPlaylist(playlist);
   };
   return (
-    <Card sx={{ minwidth: "100%" }}>
+    <Card sx={{ minwidth: "100%", position: "relative" }}>
       <Box sx={{ position: "relative" }}>
         <CardMedia
           component="img"
@@ -59,7 +63,7 @@ const PlaylistCard = ({ playlist }) => {
         </Typography>
         <Link
           component={RouterLink}
-          to={`${id}`}
+          to={`/playlists/${id}`}
           sx={{ color: "inherit", textDecoration: "none" }}
         >
           <Typography
@@ -70,6 +74,19 @@ const PlaylistCard = ({ playlist }) => {
             View Full playlist
           </Typography>
         </Link>
+        <Box
+          onClick={() => toggleFavorites(id)}
+          sx={{
+            display: "inline-block",
+            position: "absolute",
+            right: "5px",
+            top: "5px",
+            borderRadius: '50%',
+            background: "#1976d2aa",
+          }}
+        >
+          <FavoriteEl playlistId={id} />
+        </Box>
       </CardContent>
     </Card>
   );
