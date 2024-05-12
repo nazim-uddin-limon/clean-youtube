@@ -19,7 +19,6 @@ const getPlaylist = async (playlistId) => {
 
   const { data } = await axios.get(URL);
   const playlistItems = await getPlaylistItems(playlistId);
-  console.log(playlistItems);
   return {
     playlistDetails: data,
     playlistItems,

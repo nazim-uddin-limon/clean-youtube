@@ -6,7 +6,6 @@ import PlaylistItems from "../components/playlist-items";
 
 const RecentsPage = () => {
   const { recents } = useStoreState((state) => state.playlist);
-  console.log(recents)
   const { getPlaylistByIds } = usePlaylist();
   const recentPlaylist = getPlaylistByIds(recents);
   return (

@@ -15,13 +15,14 @@ import Box from "@mui/material/Box";
 const PlaylistCard = ({ playlist }) => {
   const { thumbnails, totalResult, title, id } = playlist;
   const playlists = useStoreState((state) => state.playlist.data);
-  const setPlaylist = useStoreActions(
-    (actions) => actions.currentPlaylist.setPlaylist
+  const {setPlaylist, setPlayingNow} = useStoreActions(
+    (actions) => actions.currentPlaylist
   );
   const { toggleFavorites } = usePlaylist();
   const handleSetPlaylist = (id) => {
     const playlist = playlists[id];
     setPlaylist(playlist);
+    setPlayingNow(0)
   };
   return (
     <Card sx={{ minwidth: "100%", position: "relative" }}>
@@ -63,7 +64,7 @@ const PlaylistCard = ({ playlist }) => {
         </Typography>
         <Link
           component={RouterLink}
-          to={`/playlists/${id}`}
+          to={`/playlists/${id}/video/${playlist.videos[0].videoId}`}
           sx={{ color: "inherit", textDecoration: "none" }}
         >
           <Typography

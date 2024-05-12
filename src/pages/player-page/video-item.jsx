@@ -11,10 +11,10 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 const VideoItem = ({ video, index }) => {
   const { videoId, title, thumbnails } = video;
   const playing = useStoreState(
-    (state) => state.currentPlaylist.playlist.playingNow
+    (state) => state.currentPlaylist.playingNow
   );
-  const setPlayingNow = useStoreActions(
-    (actions) => actions.currentPlaylist.setPlayingNow
+  const  {setPlayingNow}  = useStoreActions(
+    (actions) => actions.currentPlaylist
   );
   const activeColor = index === playing ? "#1976d2aa" : "#fff";
   return (
@@ -28,7 +28,7 @@ const VideoItem = ({ video, index }) => {
       }}
       onClick={() => setPlayingNow(index)}
     >
-      <Box sx={{ backgroundColor: activeColor, paddingBottom: '8px'}}>
+      <Box sx={{ backgroundColor: activeColor, paddingBottom: "8px" }}>
         <Grid
           container
           spacing={1}
@@ -39,7 +39,7 @@ const VideoItem = ({ video, index }) => {
         >
           <Grid item xs={1}>
             <Typography variant="body2">
-              {playing === index ? <PlayArrowIcon /> : index}
+              {playing === index ? <PlayArrowIcon /> : index+1}
             </Typography>
           </Grid>
           <Grid item xs={11}>

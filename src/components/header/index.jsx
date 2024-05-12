@@ -67,7 +67,6 @@ const Header = () => {
   };
 
   const handleOpenNav = (event) => {
-    console.log(event);
     setAnchorEl(event.currentTarget);
   };
   const handleClosenav = () => {

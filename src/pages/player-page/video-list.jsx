@@ -8,14 +8,28 @@ import Typography from "@mui/material/Typography";
 import MenuList from "@mui/material/MenuList";
 
 import VideoItem from "./video-item";
+import NavigateCtrl from "./navigate";
 
 const VideoList = () => {
   const { thumbnails, title, videos } = useStoreState(
     (state) => state.currentPlaylist.playlist
   );
+  if (!videos) {
+    return <h1>No video was found</h1>;
+  }
   return (
-    <Card sx={{maxHeight: {sm: '100vh', xs: '100vh', md: 'inherit'}, overflowY: {xs: 'scroll', sm: 'scroll'}}}>
-      <CardMedia component="img" alt="playlist-image" image={thumbnails} />
+    <Card
+      // sx={{
+      //   maxHeight: { sm: "100vh", xs: "100vh", md: "inherit" },
+      //   overflowY: { xs: "scroll", sm: "scroll" },
+      // }}
+    >
+      <CardMedia
+        sx={{ display: { sm: "none", md: "block", lg: "block" } }}
+        component="img"
+        alt="playlist-image"
+        image={thumbnails}
+      />
       <CardContent>
         <Typography
           variant="h6"
@@ -27,12 +41,17 @@ const VideoList = () => {
         >
           {title}
         </Typography>
-        <Box>reload</Box>
+        <NavigateCtrl />
       </CardContent>
-      <Box sx={{maxHeight: {sm: 'inherit',md: '400px'}, overflowY: {md: 'auto'}}}>
+      <Box
+        sx={{
+          maxHeight: '400px',
+          overflowY: 'auto'
+        }}
+      >
         <MenuList>
           {videos.map((video, index) => (
-            <VideoItem key={video.videoId} video={video} index={index + 1} />
+            <VideoItem key={video.videoId} video={video} index={index} />
           ))}
         </MenuList>
       </Box>

@@ -1,4 +1,4 @@
-import { action, persist } from "easy-peasy";
+import { action, computed, persist } from "easy-peasy";
 
 const currentPlaylistModel = persist({
   playlist: {
@@ -7,19 +7,37 @@ const currentPlaylistModel = persist({
     description: "",
     thumbnails: "",
     channelTitle: "",
-    playingNow: 0,
     totalResult: 0,
     videos: [],
   },
-  setPlaylist: action((state, payload, helper) => {
-    console.log(helper);
+  playingNow: 0,
+  nextVideo: computed((state) => {
+    const playingNow = state.playingNow;
+    const { totalResult, videos } = state.playlist;
+    if (videos.length === 0) {
+      return;
+    }
+    return playingNow < totalResult - 1
+      ? videos[playingNow + 1].videoId
+      : videos[0].videoId;
+  }),
+  prevVideo: computed((state) => {
+    const playingNow = state.playingNow;
+    const { videos, totalResult } = state.playlist;
+    if (videos.length === 0) {
+      return;
+    }
+    return playingNow > 0
+      ? videos[playingNow - 1].videoId
+      : videos[totalResult - 1].videoId;
+  }),
+  setPlaylist: action((state, payload) => {
     state.playlist = {
       ...payload,
-      playingNow: 0,
     };
   }),
   setPlayingNow: action((state, payload) => {
-    state.playlist.playingNow = payload;
+    state.playingNow = payload;
   }),
 });
 
